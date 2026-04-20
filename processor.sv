@@ -1,6 +1,6 @@
 module rv64_processor (
     input logic clk,
-    input logic resetn
+    input logic rst_n
 );
 
     logic [63:0] pc;
@@ -21,9 +21,15 @@ module rv64_processor (
         .pc_prev (pc)
     );
 
-    // -------------------------------------------------------
-    // TODO: wire in instruction memory, register file,
-    //       ALU, data memory, control unit, etc.
-    // -------------------------------------------------------
+    data_memory data_mem (
+        .clk (clk),
+        .rst_n (rst_n),
+        .addr (addr),
+        .write_data (write_data),
+        .write_en (write_en),
+        .read_en (read_en),
+        .read_data (read_data)
+    );
 
+    
 endmodule
