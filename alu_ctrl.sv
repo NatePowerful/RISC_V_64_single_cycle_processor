@@ -12,8 +12,8 @@ module alu_ctrl (
     output logic [3:0]  alu_op       // operation select to ALU
 );
 
-    wire [2:0] funct3;
-    wire       funct7_5;
+    logic [2:0] funct3;
+    logic       funct7_5;
 
     assign funct3   = instruction[14:12]; // identifies operation within a type (e.g. 000=ADD, 111=AND)
     // Gate funct7[5] with instruction[5] (opcode[5]):

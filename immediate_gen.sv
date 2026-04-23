@@ -12,8 +12,10 @@ module immediate_gen (
 
         case (instruction[6:0]) // decode by opcode
 
-            // I-type: imm[11:0] = instruction[31:20] (used by ADDI, ANDI, ORI, XORI, LD)
-            7'b0010011,
+            // I-type: imm[11:0] = instruction[31:20] (ADDI, ANDI, ORI, XORI)
+            7'b0010011: immediate = {{52{instruction[31]}}, instruction[31:20]};
+
+            // I-type load: same encoding as I-ALU (LD)
             7'b0000011: immediate = {{52{instruction[31]}}, instruction[31:20]};
 
             // S-type: imm split across two fields — upper 7 bits and lower 5 bits (SD)
